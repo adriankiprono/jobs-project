@@ -1,3 +1,5 @@
+{%load bootstrap4%}
+{%load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,10 +13,14 @@
 
     {% block styles %}
         {% bootstrap_css %}
+        <link rel="stylesheet" href="{%static 'css/base-jobs.css'%}">
+        <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
-    {%block content%} {%endblock%}
+    {%block content%} 
+    <h2>HELLO THERE</h2>
+    {%endblock%}
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% bootstrap_javascript %}
