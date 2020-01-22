@@ -7,4 +7,4 @@ from django.http import HttpResponse,Http404
 # Create your views here.
 def index(request):
     applicant=Applicant.objects.all()
-    return render(request,'index.html',local())
+    return render(request,'index.html',locals())
