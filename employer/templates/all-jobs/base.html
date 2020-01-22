@@ -15,9 +15,12 @@
         {% bootstrap_css %}
         <link rel="stylesheet" href="{%static 'css/base-jobs.css'%}">
         <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     {% endblock %}
 </head>
 <body>
+    {% include "navbar.html" %}
     {%block content%} 
     <h2>HELLO THERE</h2>
     {%endblock%}
