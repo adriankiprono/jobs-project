@@ -20,6 +20,11 @@ class Applicant(models.Model):
     pay=models.PositiveIntegerField()
     user=models.ForeignKey('User',on_delete=models.CASCADE,null=True)
 
+    @classmethod
+    def search_by_jobs(cls,search_term):
+        applicants = cls.objects.filter(job__icontains=search_term)
+        return applicants
+
 class User(models.Model):
     user_name=models.CharField(max_length=50,null=True)
 
