@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
+from .models import *
+from django.http import HttpResponse,Http404
+
 
 
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    applicant=Applicant.objects.all()
+    return render(request,'index.html',local())
