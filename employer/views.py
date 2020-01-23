@@ -26,3 +26,10 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all-jobs/search.html',{"message":message})
 
+
+def job(request,job_id):
+    try:
+        job = Applicant.objects.get(id = job_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"all-job/job.html", locals())
