@@ -19,6 +19,7 @@ class Applicant(models.Model):
     descriptions=models.TextField(max_length=200,null=True)
     pay=models.PositiveIntegerField()
     user=models.ForeignKey('User',on_delete=models.CASCADE,null=True)
+    picture = models.ImageField(upload_to='avatar/', default='default.jpg')
 
     @classmethod
     def search_by_job(cls,search_term):
@@ -30,6 +31,7 @@ class User(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True,related_name='profile')
+    profile_pic = models.ImageField(upload_to='image/', default='default.png')
 
 
     
