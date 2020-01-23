@@ -2,7 +2,9 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .forms import NewJobForm
+from .forms import NewJobForm,ProfileForm,UserForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 
@@ -48,5 +50,35 @@ def new_applicant(request):
     else:
         form = NewJobForm()
     return render(request, 'new_applicant.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def profile_update(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('settings:profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profiles/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user = request.user)
+    images = request.user.project_set.all()
+    user_x=User.objects.get(id=request.user.id)
+    job = Applicant.objects.all()
+    print(job)
+    return render(request,'profile/profile.html',locals())
 
 
