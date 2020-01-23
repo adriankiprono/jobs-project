@@ -15,13 +15,13 @@ class Applicant(models.Model):
         max_length=20,
         choices=APPLICANT_CHOICES,
     )
-    jobs=models.CharField(max_length=50,null=True)
+    job=models.CharField(max_length=50,null=True)
     descriptions=models.TextField(max_length=200,null=True)
     pay=models.PositiveIntegerField()
     user=models.ForeignKey('User',on_delete=models.CASCADE,null=True)
 
     @classmethod
-    def search_by_jobs(cls,search_term):
+    def search_by_job(cls,search_term):
         applicants = cls.objects.filter(job__icontains=search_term)
         return applicants
 

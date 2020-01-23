@@ -1,0 +1,25 @@
+{%extends 'all-jobs/base.html'%} 
+{% block content %}
+<div class="container-fluid">
+
+        <div class="row">
+          {% if applicant%}
+            <h2>Found {{ applicant|length }} of searched term {{message}}</h2>
+          {% else %}
+            <h2> Found 0 jobs for the search term {{message}}</h2>
+          {% endif %}
+      
+        </div>
+      
+        <div class="row">
+      
+        {% if applicant %}
+          {% for applican in applicant %}
+            <div class="col-sm-6 col-md-3">
+                <h1>{{applican.jobs}}</h1>
+            </div>
+          {% endfor %}
+        {% endif %}
+        </div>
+      </div>
+{% endblock %}
