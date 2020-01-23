@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.http import HttpResponse,Http404
+from django.contrib.auth.decorators import login_required
+
 
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def index(request):
     applicant=Applicant.objects.all()
     return render(request,'index.html',locals())
