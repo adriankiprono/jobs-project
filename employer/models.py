@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Applicant(models.Model):
     pay=models.PositiveIntegerField()
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     picture = models.ImageField(upload_to='avatar/', default='default.jpg')
+    post = HTMLField(null=True)
 
     @classmethod
     def search_by_job(cls,search_term):

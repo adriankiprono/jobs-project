@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-
+from .forms import NewJobForm
 
 
 
@@ -27,9 +27,26 @@ def search_results(request):
         return render(request, 'all-jobs/search.html',{"message":message})
 
 
-def job(request,job_id):
+def applicant(request,applicant_id):
     try:
-        job = Applicant.objects.get(id = job_id)
+        applicant = Applicant.objects.get(id = applicant_id)
     except DoesNotExist:
         raise Http404()
     return render(request,"all-job/job.html", locals())
+
+@login_required(login_url='/accounts/login/')
+def new_applicant(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewJobForm(request.POST, request.FILES)
+        if form.is_valid():
+            applicant = form.save(commit=False)
+            applicant.user = current_user
+            applicant.save()
+        return redirect('index')
+
+    else:
+        form = NewJobForm()
+    return render(request, 'new_applicant.html', {"form": form})
+
+
