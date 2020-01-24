@@ -54,31 +54,36 @@ def new_applicant(request):
 @login_required(login_url='/accounts/login/')
 def profile_update(request):
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        user_form = UserForm(request.POST)
+        profile_form = ProfileForm(request.POST)
         if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('settings:profile')
+            my_user_form = user_form.save(commit=False)
+            my_profile_form = profile_form.save(commit=False)
+            my_profile_form.user_id = request.user.id
+            my_profile_form.save()
+            my_user_form.save()
+            messages.success(request, f'Your profile was successfully updated!')
+            return redirect('profile')
         else:
-            messages.error(request, _('Please correct the error below.'))
+            messages.error(request, f'Please correct the error below.')
     else:
         user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profiles/profile.html', {
+        profile_form = ProfileForm()
+    forms= {
         'user_form': user_form,
         'profile_form': profile_form
-    })
+        }
+    
+    return render(request,'profile/profile_update.html',forms)
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    profile = Profile.objects.filter(user = request.user)
-    images = request.user.project_set.all()
+    profile = Profile.objects.filter(user_id = request.user.id)
+    images = request.user.applicant_set.all()
     user_x=User.objects.get(id=request.user.id)
-    job = Applicant.objects.all()
-    print(job)
+    applicant = Applicant.objects.all()
+    print(applicant)
     return render(request,'profile/profile.html',locals())
 
 

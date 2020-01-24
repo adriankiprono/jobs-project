@@ -15,9 +15,20 @@
       
         {% if applicant %}
           {% for applican in applicant %}
-            <div class="col-sm-6 col-md-3">
-                <h1>{{applican.jobs}}</h1>
-            </div>
+            
+                    <div class="col-sm-6 col-md-3">
+                            <div class="card">
+                                    <div class="card-header">name:{{applican.first_name}}</div>
+                                    <div class="card-header">job:{{applican.job}}</div>
+                                    <div class="card-body">owner:{{applican.description}}</div>
+                                    <div class="card-body">pay ksh:{{applican.pay}}</div>
+                                    <div class="card-footer">contact:{{applican.contact}}</div>
+                
+                                  </div>
+                          
+                           
+                      </div>
+            
           {% endfor %}
         {% endif %}
         </div>

@@ -8,7 +8,7 @@ from django.dispatch import receiver
 class Applicant(models.Model):
     
     first_name = models.CharField(max_length =30,null=True)
-    last_name = models.CharField(max_length =30,null=True)
+    company = models.CharField(max_length =30,null=True)
     email = models.EmailField()
     APPLICANT_CHOICES=(
         ('EMPLOYER','employer'),
@@ -24,6 +24,8 @@ class Applicant(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     picture = models.ImageField(upload_to='avatar/', default='default.jpg')
     post = HTMLField(null=True)
+    contact=models.PositiveIntegerField(null=True)
+
 
     @classmethod
     def search_by_job(cls,search_term):
@@ -31,10 +33,9 @@ class Applicant(models.Model):
         return applicants
 
 class User(models.Model):
-    user_name=models.CharField(max_length=50,null=True)
+    name=models.CharField(max_length=50,null=True)
     user_email=models.EmailField(max_length=50,null=True)
 
-    
 
 class Profile(models.Model):
     name = models.CharField(max_length=70,null=True)

@@ -10,7 +10,7 @@ class NewJobForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('user_name', 'user_email')
+        fields = ('name', 'user_email')
 
 class ProfileForm(forms.ModelForm):
     class Meta:

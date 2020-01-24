@@ -1,32 +1,39 @@
-{% load bootstrap4 %} {% load staticfiles %}
-<!DOCTYPE html>
-<html>
 
+{% load bootstrap4 %}
+{% load staticfiles %}
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Post</title>
+    {% block styles %}
 
-  <title>New Post</title>
-  {{form.media}}
-
-{% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+     {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/base-hood.css' %}"> {% endblock %}
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Shadows+Into+Light|Six+Caps&display=swap" rel="stylesheet">
 
 </head>
-
+<title>New Post</title>
 <body>
+    <div class="container-fluid">
+      <h5>New Post</h5>
+        <div class="panel panel-danger" style="width: 400px; margin: auto;">
+          <div class="panel-body" >
+            <form  action="{%url 'new-applicant'%}" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+            
+                {% bootstrap_form form%}
+                <input type="submit" class="btn btn-success btn-lg" value="Post">
+            </form>
 
-  <form  action="{%url 'new-applicant'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
+    </div>
+    </div>
 
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-  </form>
-
-   {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
-
+    </div>
+    
+       {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      {% bootstrap_javascript %} {% endblock %}
 </body>
-
 </html>

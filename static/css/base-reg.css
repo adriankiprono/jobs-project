@@ -1,0 +1,16 @@
+body{
+    background-repeat: repeat;
+    background-image: url('http://fundsforlife.ch/wp-content/uploads/2018/06/water-blog.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: antiquewhite;
+
+
+}
+h6{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 70px;
+    text-align: center;
+    text-decoration-style: dashed;
+    text-decoration: underline;
+}

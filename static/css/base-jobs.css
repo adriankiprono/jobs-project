@@ -3,3 +3,10 @@ h2{
     text-align: center;
     font-size: 69px;
 }
+body{
+    background-repeat: repeat;
+    background-image: url('https://ojjme2x5sm337cgpo2mhuny3-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/executive_job_sites_2xthumb-1.png');
+    background-size: cover;
+    background-position: center;
+    background-color: antiquewhite;
+}
