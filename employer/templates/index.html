@@ -16,7 +16,7 @@
         </div>
             <div class="card-title">
                 <h4>Employer:{{applican.first_name}}</h4>
-                <h4 style="color:blue">description:{{applican.description }}</h4>
+                <h4 style="color:blue">description:{{applican.descriptions }}</h4>
               </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
              <img src="{{ applican.picture.url }}" class="card-img-top" alt="..." >
              <div class="card-body">
                <h5 class="card-title"> Company:{{applican.company}}</h5>
-               <p class="card-text">description:{{applican.descprition }}</p>
+               <p class="card-text">description:{{applican.descpritions }}</p>
                <p class="card-text">pay ksh:{{applican.pay }}</p>
                <p class="card-text">email:{{applican.email }}</p>
                <input type="text" value="{{applican.contact}}" id="copypaste" class="form-control">
